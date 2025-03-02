@@ -3,97 +3,477 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitación a la Comunión</title>
+    <title>Invitación a la Comunión de Oliver</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        body { text-align: center; font-family: 'Georgia', serif; margin: 0; padding: 0; background: #f8f9fa; }
-        h1 { background: #e6c200; padding: 20px; color: white; font-size: 2em; }
-        .container { max-width: 90%; margin: auto; background: white; padding: 10px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
-        .page { display: none; }
-        .active { display: block; }
-        button { background: #e6c200; color: white; border: none; cursor: pointer; font-size: 1.1em; padding: 10px; margin: 10px; border-radius: 5px; }
-        button:hover { background: #d1a900; }
-        #countdown { display: flex; justify-content: center; gap: 10px; margin: 20px; flex-wrap: wrap; }
-        .countdown-box { background: #e6c200; color: white; padding: 10px; border-radius: 5px; font-size: 1.5em; width: 60px; text-align: center; }
-        .section { padding: 20px; }
-        .map-link { display: inline-block; margin-top: 10px; color: #d35400; font-weight: bold; }
-        @media (max-width: 600px) {
-            .container { width: 95%; padding: 10px; }
-            h1 { font-size: 1.3em; border-radius: 5px; }
-            .countdown-box { width: 50px; font-size: 1.2em; }
+        html {
+            scroll-behavior: smooth;
+        }
+        body { 
+            text-align: center; 
+            font-family: 'Montserrat', sans-serif;
+            margin: 0; 
+            padding: 0; 
+            background: #fdf7e3; 
+            color: #5a4632;
+            overflow-x: hidden;
+        }
+        .section {
+            min-height: auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .container { 
+            max-width: 600px; 
+            margin: 0px auto; 
+            background: white; 
+            padding: 25px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .cross { 
+            font-size: 3em; 
+            color: #c9a14a; 
+            margin-top: 10px;
+            transition: transform 0.7s ease;
+        }
+        .cross:hover {
+            transform: rotate(360deg) scale(1.2);
+        }
+        .icon { 
+            font-size: 2.5em; 
+            color: #c9a14a; 
+            margin: 15px;
+            transition: all 0.3s ease;
+        }
+        .icon:hover {
+            transform: scale(1.3);
+        }
+        h1 { 
+            font-family: 'Dancing Script', cursive; 
+            font-size: 2.8em; 
+            color: #a67c52; 
+            margin: 10px 0;
+            animation: fadeInTitle 2s ease-out;
+        }
+        @keyframes fadeInTitle {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        h2 { 
+            font-size: 1.3em; 
+            margin-top: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        h2:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: #c9a14a;
+            transition: all 0.5s ease;
+        }
+        h2:hover:after {
+            width: 100%;
+            left: 0;
+        }
+        .photo-container {
+            overflow: hidden;
+            border-radius: 10px;
+            margin: 25px auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            position: relative;
+            width: 85%;
+            max-width: 300px;
+        }
+        .photo-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        .photo-container img { 
+            width: 100%;
+            height: auto;
+            transition: all 0.7s ease; 
+            display: block;
+        }
+        .photo-container:hover img {
+            transform: scale(1.1);
+        }
+        .details p { 
+            font-size: 1.2em; 
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+        .details p:hover {
+            transform: scale(1.05);
+        }
+        .date-location { 
+            font-weight: bold; 
+            font-size: 1.4em; 
+            color: #a67c52;
+            background: linear-gradient(to right, #c9a14a, #a67c52);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            transition: all 0.5s ease;
+        }
+        .date-location:hover {
+            letter-spacing: 1px;
+        }
+        .button { 
+            background: #c9a14a; 
+            color: white; 
+            padding: 12px 22px; 
+            border-radius: 30px; 
+            text-decoration: none; 
+            display: inline-block; 
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .button:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        .button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+            background: #b08c45;
+        }
+        .button:hover:before {
+            left: 100%;
+        }
+        iframe { 
+            width: 100%; 
+            height: 250px; 
+            border: none; 
+            border-radius: 10px; 
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+        iframe:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        form { 
+            margin-top: 25px; 
+            padding: 25px; 
+            background: linear-gradient(to bottom, #fff5d7, #fff); 
+            border-radius: 12px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        form:hover {
+            transform: scale(1.02);
+        }
+        input, button { 
+            width: 100%; 
+            max-width: 300px; 
+            padding: 14px; 
+            margin-top: 15px; 
+            border-radius: 30px; 
+            border: 1px solid #c9a14a;
+            transition: all 0.3s ease;
+        }
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(201, 161, 74, 0.5);
+            transform: scale(1.02);
+        }
+        button { 
+            background: #c9a14a; 
+            color: white; 
+            cursor: pointer; 
+            font-size: 1.1em; 
+            border: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        button:hover { 
+            background: #b08c45;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+        }
+        button:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        button:hover:before {
+            left: 100%;
+        }
+		#countdown { 
+			display: flex; 
+			justify-content: center; 
+			gap: 15px; /* Más espacio entre los elementos */
+			margin-top: 20px; 
+			font-size: 1.0em; /* Tamaño de fuente más grande */
+			flex-wrap: wrap; /* Para mejor ajuste en móviles */
+		}
+
+		.countdown-box { 
+			background: linear-gradient(135deg, #c9a14a, #b08c45); 
+			color: white; 
+			padding: 15px; /* Aumentado el padding */
+			border-radius: 15px; /* Bordes más redondeados */
+			text-align: center; 
+			width: 40px; /* Más grande */
+			height: 40px; /* Añadido alto para hacerla más uniforme */
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+			font-size: 1.2em; /* Letra más grande */
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		@media (max-width: 480px) {
+			#countdown {
+				gap: 10px; /* Un poco menos de espacio en móviles */
+			}
+
+			.countdown-box {
+				width: 30px; /* Más grande en móviles */
+				height: 30px; /* Proporcional */
+				font-size: 1.1em; /* Letra más grande en móviles */
+				padding: 12px;
+			}
+		}
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .countdown-box:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .divider { 
+            position: relative;
+            margin: 20px auto;
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #c9a14a, transparent);
+            transform: scaleX(0);
+            transition: transform 1s ease;
+        }
+        .divider.visible {
+            transform: scaleX(1);
+        }
+        .highlight { 
+            font-size: 1.5em; 
+            font-weight: bold; 
+            color: #a67c52;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .highlight:hover {
+            transform: scale(1.1);
+        }
+        .highlight:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #c9a14a;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.5s ease;
+        }
+        .highlight:hover:after {
+            transform: scaleX(1);
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .rotate-in {
+            animation: rotateIn 1s ease-out;
+        }
+        @keyframes rotateIn {
+            0% { transform: rotate(-180deg) scale(0); opacity: 0; }
+            100% { transform: rotate(0) scale(1); opacity: 1; }
+        }
+        .fade-in {
+            animation: fadeIn 1.5s ease-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #c9a14a;
+            opacity: 0.3;
+            border-radius: 50%;
+            animation: particleFall 15s linear infinite;
+        }
+        @keyframes particleFall {
+            0% { transform: translateY(-100px) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(calc(100vh + 100px)) translateX(100px) rotate(360deg); opacity: 0; }
+        }
+        .bg-animation {
+            background: linear-gradient(45deg, #fdf7e3, #fff5d7, #f8e7c5, #fdf7e3);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .zoom-in {
+            animation: zoomIn 1.5s ease-out;
+        }
+        @keyframes zoomIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div id="home" class="page active" onclick="navigate('menu')" style="cursor: pointer;">
-		  <h1>¡Te invitamos a la Comunión de Oliver!</h1>
-            <img src="Oliver2.jpeg"  style="width:100%; border-radius: 10px; margin-bottom: 0;">
-            <h1>Faltan</h1>
-            <div id="countdown">
-                <div>
-                    <div class="countdown-box" id="dias"></div>
-                    <p>Días</p>
-                </div>
-                <div>
-                    <div class="countdown-box" id="horas"></div>
-                    <p>Horas</p>
-                </div>
-                <div>
-                    <div class="countdown-box" id="minutos"></div>
-                    <p>Minutos</p>
-                </div>
-                <div>
-                    <div class="countdown-box" id="segundos"></div>
-                    <p>Segundos</p>
-                </div>
-            </div>
+    <div class="section bg-animation" id="inicio">
+        <div class="particles" id="particles"></div>
+        <div class="container" id="main-container">
+            <div class="cross floating">✝</div>
+            <h2>Estás invitado a la</h2>
+            <h1>Primera Comunión de Oliver</h1>
            
+            <div class="photo-container">
+                <img src="Oliver2.jpeg" alt="Oliver con iconos religiosos">
+            </div>
+            <div class="divider"></div>
+            <div class="details">
+                <p class="date-location">4 de mayo de 2025 - 12:00</p>
+                <div class="icon floating"><i class="fas fa-church"></i></div>
+                <p>Iglesia de Santa María</p>
+            </div>
         </div>
+    </div>
 
-        <div id="menu" class="page">
-		
-            <img src="Oliver1.jpeg" alt="Opciones" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
+    <div class="section" id="iglesia">
+        <div class="container">
+            <h2>La Ceremonia</h2>
+            <div class="icon rotate-in"><i class="fas fa-church"></i></div>
+            <p>Iglesia de Santa María</p>
+			<p>Sanlucar la Mayor</p>
+            <div class="photo-container">
+                <img src="Iglesia.jfif" alt="Iglesia de Santa María">
+            </div>
+           <a class="button" href="https://www.google.com/maps?q=C.+Juan+Carlos+I,+3,+41800+Sanlúcar+la+Mayor,+Sevilla" target="_blank">Ver ubicación</a>
+
+        </div>
+    </div>
+
+    <div class="section" id="celebracion">
+        <div class="container">
+            <h2>La Celebración</h2>
+            <p>Acompáñanos en</p> 
+			<p><span class="highlight">Finca el Enreo</span></p>
+            <div class="icon floating"><i class="fas fa-glass-cheers"></i></div>
             
-            <button onclick="navigate('iglesia')">Información de la Iglesia</button>
-            <button onclick="navigate('convite')">Información del Convite</button>
-            <button onclick="navigate('confirmar')">Confirmar Asistencia</button>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3171.235632702918!2d-6.1946345!3d37.3727738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDIyJzIyLjAiTiA2wrAxMSczMS40Ilc!5e0!3m2!1ses!2ses!4v1707768123456!5m2!1ses!2ses" allowfullscreen></iframe>
+            <p><a class="button" href="https://www.google.com/maps/dir//Finca+el+Enreo" target="_blank">Cómo llegar</a></p>
         </div>
+    </div>
 
-        <div id="iglesia" class="page section">
-            <h1>Iglesia de Santa María</h1>
-            <img src="Iglesia.jfif" alt="Iglesia de Santa María" style="width:100%; border-radius: 10px; margin-bottom: 10px;">
-            
-			<p>Dónde: <strong>C. Juan Carlos I, 3 </p> Sanlúcar la Mayor</p> Sevilla</strong></p>
-			<p>Cuándo: <strong>12:00</strong></p>
-			<button onclick="navigate('menu')">Volver</button>
-			
-        </div>
-
-        <div id="convite" class="page section">
-            <h1>Detalles del Convite</h1>
-            <p><strong> Finca el Enreo </p> Sanlúcar la Mayor </p> Sevilla </strong></p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3171.235632702918!2d-6.1917129!3d37.3733541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDIyJzIzLjEiTiA2wrAxMSczOS4xIlc!5e0!3m2!1ses!2ses!4v1707768123456!5m2!1ses!2ses" allowfullscreen style="width: 100%; max-width: 600px; height: 300px; border-radius: 10px;"></iframe>
-            <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=37.3733541,-6.1917129" target="_blank">Cómo llegar</a><br>
-			<button onclick="navigate('menu')">Volver</button>
-        </div>
-		
-		<div id="confirmar" class="page section">
-            <h1>Confirma tu asistencia</h1>
+    <div class="section" id="confirmacion">
+        <div class="container">
+            <h2>Confirma tu asistencia</h2>
+            <div class="icon zoom-in"><i class="fas fa-envelope-open-text"></i></div>
             <form action="https://formspree.io/f/xdkallgj" method="POST">
                 <input type="text" name="nombre" placeholder="Tu Nombre" required>
                 <input type="email" name="email" placeholder="Tu Correo" required>
                 <button type="submit">Confirmar Asistencia</button>
             </form>
-            <button onclick="navigate('menu')">Volver</button>
+        </div>
+    </div>
+
+    <div class="section" id="countdown-section">
+        <div class="container">
+            <h2>Faltan</h2>
+            <div class="icon fade-in"><i class="fas fa-hourglass-half"></i></div>
+            <div id="countdown">
+                <div class="countdown-box" id="dias"></div>
+                <div class="countdown-box" id="horas"></div>
+                <div class="countdown-box" id="minutos"></div>
+                <div class="countdown-box" id="segundos"></div>
+            </div>
         </div>
     </div>
 
     <script>
-        function navigate(page) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(page).classList.add('active');
+        // Particles animation
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.width = (Math.random() * 10 + 5) + 'px';
+                particle.style.height = particle.style.width;
+                particlesContainer.appendChild(particle);
+            }
         }
 
+        // Countdown function
         function actualizarCuentaRegresiva() {
             const eventoFecha = new Date("2025-05-04T12:00:00").getTime();
             const ahora = new Date().getTime();
@@ -104,12 +484,58 @@
             const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
             const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-            document.getElementById("dias").innerHTML = dias;
-            document.getElementById("horas").innerHTML = horas;
-            document.getElementById("minutos").innerHTML = minutos;
-            document.getElementById("segundos").innerHTML = segundos;
+            document.getElementById("dias").innerText = dias + "d";
+            document.getElementById("horas").innerText = horas + "h";
+            document.getElementById("minutos").innerText = minutos + "m";
+            document.getElementById("segundos").innerText = segundos + "s";
         }
-        setInterval(actualizarCuentaRegresiva, 1000);
+
+        // Scroll animation function
+        function checkScroll() {
+            const containers = document.querySelectorAll('.container');
+            const dividers = document.querySelectorAll('.divider');
+            
+            containers.forEach(container => {
+                const containerTop = container.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (containerTop < windowHeight * 0.85) {
+                    container.classList.add('visible');
+                }
+            });
+            
+            dividers.forEach(divider => {
+                const dividerTop = divider.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (dividerTop < windowHeight * 0.9) {
+                    divider.classList.add('visible');
+                }
+            });
+        }
+
+        // Initialize everything
+        window.onload = function() {
+            createParticles();
+            setInterval(actualizarCuentaRegresiva, 1000);
+            actualizarCuentaRegresiva();
+            checkScroll();
+            
+            // Initial animation for main container
+            setTimeout(() => {
+                document.getElementById('main-container').classList.add('visible');
+            }, 300);
+            
+            // Show dividers
+            document.querySelectorAll('.divider').forEach((divider, index) => {
+                setTimeout(() => {
+                    divider.classList.add('visible');
+                }, 800 + (index * 400));
+            });
+        }
+        
+        // Add scroll event listener
+        window.addEventListener('scroll', checkScroll);
     </script>
 </body>
 </html>
