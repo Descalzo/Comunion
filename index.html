@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Meta etiquetas para WhatsApp, Facebook y otras redes -->
 	<meta property="og:title" content="Invitación a la Comunión de Oliver">
 	<meta property="og:description" content="Acompáñanos a la primera comunión de Oliver. ¡No te lo pierdas!">
-	<meta property="og:image" content="https://descalzo.github.io/Comunion/Oliver2.jpeg">
+	<meta property="og:image" content="https://tusitio.com/imagen.jpg">
 	<meta property="og:url" content="https://descalzo.github.io/Comunion/">
 	<meta property="og:type" content="website">
 	<meta property="og:image:width" content="1200">
 	<meta property="og:image:height" content="630">
 	<meta name="twitter:card" content="summary_large_image">
+
 	
     <title>Invitación a la Comunión de Oliver</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -30,7 +32,7 @@
         }
         .section {
             min-height: auto;
-            padding: 40px 20px;
+            padding: 20px 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -83,10 +85,10 @@
             100% { opacity: 1; transform: translateY(0); }
         }
         h2 { 
-            font-size: 1.3em; 
-            margin-top: 15px;
+            font-size: 1.0em; 
+            margin-top: 10px;
             position: relative;
-            display: inline-block;
+           
         }
         h2:after {
             content: '';
@@ -95,13 +97,23 @@
             height: 2px;
             bottom: -5px;
             left: 50%;
-            background-color: #c9a14a;
-            transition: all 0.5s ease;
+            
+          
         }
         h2:hover:after {
             width: 100%;
             left: 0;
         }
+		
+		
+		 h4 { 
+            font-family: 'Dancing Script', cursive; 
+            font-size: 2.5em; 
+            color: #a67c52; 
+            margin: 10px 0;
+            animation: fadeInTitle 2s ease-out;
+        }
+		
         .photo-container {
             overflow: hidden;
             border-radius: 10px;
@@ -399,12 +411,15 @@
         <div class="particles" id="particles"></div>
         <div class="container" id="main-container">
             <div class="cross floating">✝</div>
-            <h2>Estás invitado a la</h2>
-            <h1>Primera Comunión de Oliver</h1>
+            <h2>Se acerca un día muy especial para mí, y tu presencia sería el mejor regalo...</h2>
+			<h2>Me encantaría que me acompañaras a mi</h2>
+            <h4>Primera Comunión</h4>
+			
            
             <div class="photo-container">
                 <img src="Oliver2.jpeg" alt="Oliver con iconos religiosos">
             </div>
+			<h1>Oliver</h1>
             <div class="divider"></div>
             <div class="details">
                 <p class="date-location">4 de mayo de 2025 - 12:00</p>
@@ -419,7 +434,7 @@
             <h2>La Ceremonia</h2>
             <div class="icon rotate-in"><i class="fas fa-church"></i></div>
             <p>Iglesia de Santa María</p>
-	    <p>Sanlúcar la Mayor</p>
+			<p>Sanlúcar la Mayor</p>
             <div class="photo-container">
                 <img src="Iglesia.jfif" alt="Iglesia de Santa María">
             </div>
@@ -432,8 +447,8 @@
         <div class="container">
             <h2>La Celebración</h2>
             <p>Acompáñanos en</p> 
-	    <p><span class="highlight">Finca el Enreo</span></p>
-	    <p>13:30-14:00</p>
+			<p><span class="highlight">Finca el Enreo</span></p>
+			<p>13:30-14:00</p>
             <div class="icon floating"><i class="fas fa-glass-cheers"></i></div>
             
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3171.235632702918!2d-6.1946345!3d37.3727738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDIyJzIyLjAiTiA2wrAxMSczMS40Ilc!5e0!3m2!1ses!2ses!4v1707768123456!5m2!1ses!2ses" allowfullscreen></iframe>
@@ -445,11 +460,12 @@
         <div class="container">
             <h2>Confirma tu asistencia</h2>
             <div class="icon zoom-in"><i class="fas fa-envelope-open-text"></i></div>
-            <form action="https://formspree.io/f/mldgqpnn" method="POST">
+            <form action="https://formspree.io/f/xdkallgj" method="POST">
                 <input type="text" name="nombre" placeholder="Tu Nombre" required>
-                
-		<input type="text" name="intolerancias" placeholder="Intolerancias y alergias">
+               
+				<input type="text" name="intolerancias" placeholder="Intolerancias y alergias">
                 <button type="submit">Confirmar Asistencia</button>
+				
             </form>
         </div>
     </div>
